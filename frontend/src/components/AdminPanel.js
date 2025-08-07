@@ -26,7 +26,8 @@ function AdminPanel({ socket, setTrackId }) {
   }, []);
 
   const fetchLinks = () => {
-    fetch('http://localhost:4000/api/links')
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+    fetch(`${BACKEND_URL}/api/links`)
       .then(res => res.json())
       .then(setLinks);
   };
@@ -48,7 +49,8 @@ function AdminPanel({ socket, setTrackId }) {
       socket.emit('join', selected.id);
       let polyline = null;
       // Geçmişi çek
-      fetch(`http://localhost:4000/api/locations/${selected.id}`)
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+      fetch(`${BACKEND_URL}/api/locations/${selected.id}`)
         .then(res => res.json())
         .then(locations => {
           if (locations.length > 0) {
@@ -101,7 +103,8 @@ function AdminPanel({ socket, setTrackId }) {
   }, [selected, map]);
 
   const createLink = async () => {
-    const res = await fetch('http://localhost:4000/api/create-link', {
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+    const res = await fetch(`${BACKEND_URL}/api/create-link`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: newLinkName })
@@ -113,7 +116,8 @@ function AdminPanel({ socket, setTrackId }) {
 
   const deleteLink = async (id) => {
     if (confirm('Bu takip linkini silmek istediğinizden emin misiniz?')) {
-      await fetch(`http://localhost:4000/api/links/${id}`, {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+      await fetch(`${BACKEND_URL}/api/links/${id}`, {
         method: 'DELETE'
       });
       fetchLinks();
