@@ -1,0 +1,5 @@
+body { font-family: Arial, sans-serif; margin: 0; }
+#admin-map { width: 100%; max-width: 800px; margin: 0 auto; border: 1px solid #ccc; }
+button { padding: 8px 16px; margin: 10px 0; }
+ul { list-style: none; padding: 0; }
+li { margin: 5px 0; }
