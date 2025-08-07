@@ -338,7 +338,7 @@ function AdminPanel({ socket, setTrackId }) {
                   </div>
                   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                     <button 
-                      onClick={() => copyToClipboard(`http://localhost:3000/track/${l.id}`)}
+                      onClick={() => copyToClipboard(l.link)}
                       style={{ 
                         padding: '8px 16px', 
                         fontSize: 12, 
